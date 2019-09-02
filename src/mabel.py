@@ -23,7 +23,7 @@ def setup_logger(level):
         '%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
     log_handler.setFormatter(formatter)
     logger.addHandler(log_handler)
-    log_levels = {0: logging.ERROR, 1: logging.WARN, 2: logging.INFO, 3: logging.DEBUG}
+    log_levels = {1: logging.ERROR, 2: logging.WARN, 3: logging.INFO, 4: logging.DEBUG}
     logger.setLevel(log_levels[int(level)])
 
 
@@ -94,7 +94,7 @@ def process_udp_packet(packet, ip_header_length, source_address, runtime_opts):
         return
     packet_data_len = udp_header[2]
     checksum = udp_header[3]
-    offset = ip_header_length + 20
+    offset = ip_header_length + 8
     udp_payload = packet[offset:offset + packet_data_len]
     # create a new packet and forward it to the receiver
     dst_port = int(packet_port_dst)
