@@ -24,7 +24,7 @@ def setup_logger(level):
     log_handler.setFormatter(formatter)
     logger.addHandler(log_handler)
     log_levels = {0: logging.ERROR, 1: logging.WARN, 2: logging.INFO, 3: logging.DEBUG}
-    logger.setLevel(log_levels[level])
+    logger.setLevel(log_levels[int(level)])
 
 
 def get_cl_opts():
