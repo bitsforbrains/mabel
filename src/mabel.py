@@ -139,10 +139,12 @@ def start_socket_stream(runtime_opts):
     while True:
         # get a packet
         packet, source_address = prom_socket.recvfrom(65565)
+        logger.debug("Processing packet from socket")
         if runtime_opts.src_ip is not None and source_address != runtime_opts.src_ip:
             # a specific source address to listen for was specified and this packet originated from somewhere else
             continue
         ip_header_length, ip_proto, ip_source_ip = unpack_ip_header(packet)
+        logger.debug("Processing packet from socket with source IP {0} and proto {1}".format(ip_source_ip, ip_proto))
         # process UDP packets only
         if ip_proto == 17:
             process_udp_packet(packet, ip_header_length, runtime_opts)
