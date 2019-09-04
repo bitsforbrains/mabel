@@ -115,7 +115,7 @@ def unpack_ip_header(packet):
 
 
 def start_pcap_stream(runtime_opts):
-    sniffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=1000)
+    sniffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=10000)
     logger.info("Successfully set up promiscuous pcap sniffer")
     for timestamp, packet in sniffer:
         # unpack ethernet frame
