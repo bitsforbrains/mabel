@@ -116,8 +116,10 @@ def unpack_ip_header(packet):
 
 def start_pcap_stream(runtime_opts):
     sniffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
+    logger.info("Successfully set up promiscuous pcap sniffer")
     for timestamp, packet in sniffer:
         # unpack ethernet frame
+        logger.debug("Packet received with raw length {0}".format(len(packet)))
         ethernet_header = struct.unpack("!6s6sH", packet[0:14])
         packet = packet[14:]
         if ethernet_header[2] == 0x800:  # only process IP protocol
