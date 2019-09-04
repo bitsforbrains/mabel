@@ -129,6 +129,7 @@ def start_pcap_stream(runtime_opts):
             # process UDP packets only
             if ip_proto == 17:
                 process_udp_packet(packet, ip_header_length, runtime_opts)
+    logger.debug("Exiting sniffer loop")
 
 
 def start_socket_stream(runtime_opts):
