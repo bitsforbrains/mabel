@@ -145,8 +145,6 @@ def start_socket_stream(runtime_opts):
         ip_header_length, ip_proto, ip_source_ip = unpack_ip_header(packet)
         # process UDP packets only
         if ip_proto == 17:
-            logger.debug(
-                "Processing packet from socket with source IP {0} and proto {1}".format(ip_source_ip, ip_proto))
             process_udp_packet(packet, ip_header_length, runtime_opts)
 
 
